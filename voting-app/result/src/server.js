@@ -26,14 +26,14 @@ io.sockets.on('connection', function (socket) {
     socket.join(data.channel);
     
   });
-
+  
   socket.on('results', (arg) => {
     console.log(arg);
-    var bc = 'jtsolarcal'; 
+    //var bc = 'jtsolarcal'; 
     options = {
       hostname: 'bluegreen',
       port: 80,
-      path: '/results/testbg/'+bc,
+      path: '/results/testbg/'+arg,
       method: 'GET'
     };
     req = https.request(options, res => {
