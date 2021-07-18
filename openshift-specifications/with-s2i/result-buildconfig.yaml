@@ -14,7 +14,7 @@ spec:
   source:
     type: Git
     git:
-      uri: "https://github.com/Treeptik/openshift-voting-app.git"
+      uri: "https://github.com/jaysonzhao/openshift-voting-app.git"
       ref: master
     contextDir: voting-app/result/src
   output:
