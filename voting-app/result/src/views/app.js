@@ -8,9 +8,6 @@ app.controller('statsCtrl', function($scope){
   $scope.aPercent = 50;
   $scope.bPercent = 50;
   $scope.processForm = function(result) {
-    socket.on("room", function (json) {
-       console.log(json);
-    });
     socket.emit("results", result.bc);
     console.log(result.bc);
   };

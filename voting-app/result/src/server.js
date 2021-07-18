@@ -20,17 +20,19 @@ io.sockets.on('connection', function (socket) {
   socket.emit('message', { text : 'Welcome!' });
 
   socket.on('subscribe', function (data) {
-    console.log(data.channel);
-    socket.emit("room",data.channel);
+    
+    
     socket.join(data.channel);
+    
+  });
+
+  sockets.on('results', function (socket) {
+    console.log(socket.data);
     
   });
 });
 
-io.sockets.on('results', function (socket) {
-  console.log(socket.data);
-  
-});
+
 
 var pool = new pg.Pool({
   connectionString: 'postgres://postgres:postgres@db/postgres'
