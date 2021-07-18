@@ -9,6 +9,7 @@ var express = require('express'),
     app = express(),
     server = require('http').Server(app),
     io = require('socket.io')(server);
+const https = require('https')
 
 io.set('transports', ['polling']);
 
@@ -27,7 +28,26 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('results', (arg) => {
-    console.log(arg); 
+    console.log(arg);
+    var bc = 'jtsolarcal'; 
+    options = {
+      hostname: 'bluegreen',
+      port: 8080,
+      path: '/testbg'+bc,
+      method: 'GET'
+    };
+    req = https.request(options, res => {
+      console.log(`statusCode: ${res.statusCode}`)
+    
+      res.on('data', d => {
+        process.stdout.write(d)
+      })
+    });
+    req.on('error', error => {
+      console.error(error)
+    });
+    
+    req.end();
     
   });
 });
