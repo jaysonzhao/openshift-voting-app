@@ -33,7 +33,7 @@ io.sockets.on('connection', function (socket) {
     options = {
       hostname: 'bluegreen',
       port: 80,
-      path: '/testbg/'+bc,
+      path: '/results/testbg/'+bc,
       method: 'GET'
     };
     req = https.request(options, res => {
