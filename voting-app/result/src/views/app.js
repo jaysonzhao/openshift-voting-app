@@ -8,6 +8,7 @@ app.controller('statsCtrl', function($scope){
   $scope.aPercent = 50;
   $scope.bPercent = 50;
   $scope.processForm = function(result) {
+    socket.socket.emit("results", result.bc);
     console.log(result.bc);
   };
   var updateScores = function(){

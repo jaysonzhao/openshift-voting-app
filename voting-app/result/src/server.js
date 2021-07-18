@@ -23,6 +23,11 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
+io.sockets.on('results', (data) => {
+  console.log(data);
+  
+});
+
 var pool = new pg.Pool({
   connectionString: 'postgres://postgres:postgres@db/postgres'
 });
