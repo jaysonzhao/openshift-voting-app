@@ -9,7 +9,7 @@ var express = require('express'),
     app = express(),
     server = require('http').Server(app),
     io = require('socket.io')(server);
-const https = require('https')
+const https = require('http');
 
 io.set('transports', ['polling']);
 
