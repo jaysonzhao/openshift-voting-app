@@ -12,6 +12,7 @@ var express = require('express'),
 
 io.set('transports', ['polling']);
 
+
 var port = process.env.PORT || 8080;
 
 io.sockets.on('connection', function (socket) {
@@ -20,6 +21,7 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('subscribe', function (data) {
     socket.join(data.channel);
+    
   });
 });
 
@@ -57,7 +59,9 @@ function getVotes(client) {
       console.error("Error performing query: " + err);
     } else {
       var votes = collectVotesFromResult(result);
+      console.log("sending"+JSON.stringify(votes));
       io.sockets.emit("scores", JSON.stringify(votes));
+
     }
 
     setTimeout(function() {getVotes(client) }, 1000);
