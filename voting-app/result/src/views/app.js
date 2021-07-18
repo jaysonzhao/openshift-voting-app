@@ -7,7 +7,9 @@ var bg2 = document.getElementById('background-stats-2');
 app.controller('statsCtrl', function($scope){
   $scope.aPercent = 50;
   $scope.bPercent = 50;
-
+  $scope.processForm = function() {
+    console.log($scope.formData);
+  };
   var updateScores = function(){
     socket.on('scores', function (json) {
        data = JSON.parse(json);
