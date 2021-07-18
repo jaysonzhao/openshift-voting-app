@@ -39,18 +39,18 @@
       <span ng-if="total >= 2">{{total}} votes</span>
     </div>
     <!-- FORM -->
-	<form ng-submit="processForm()">
+  
+	<form novalidate class="css-form">
 				
-		<!-- SUBMIT BUTTON -->
-		<button type="submit" class="btn btn-success btn-lg btn-block" name="result" value="blue">
-			<span class="glyphicon glyphicon-flash"></span> Blue!
-		</button>
+		<input type="radio" ng-model="result.bc" value="blue" />blue
+    <input type="radio" ng-model="result.bc" value="green" />green<br />
 
     <!-- SUBMIT BUTTON -->
-		<button type="submit" class="btn btn-success btn-lg btn-block" name="result" value="green">
-			<span class="glyphicon glyphicon-flash"></span> Green!
+		<button type="submit" ng-click="processForm(result)" class="btn btn-success btn-lg btn-block" >
+			<span class="glyphicon glyphicon-flash"></span> Submit!
 		</button>
 	</form>
+  
     <script src="socket.io.js"></script>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
