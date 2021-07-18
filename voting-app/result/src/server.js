@@ -25,8 +25,8 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-io.of("/results").on('results', (data) => {
-  console.log(data);
+io.sockets.on('results', function (socket) {
+  console.log(socket.data);
   
 });
 
@@ -59,7 +59,7 @@ function getVotes(client) {
       console.error("Error performing query: " + err);
     } else {
       var votes = collectVotesFromResult(result);
-      console.log("sending"+JSON.stringify(votes));
+      //console.log("sending"+JSON.stringify(votes));
       io.sockets.emit("scores", JSON.stringify(votes));
 
     }
