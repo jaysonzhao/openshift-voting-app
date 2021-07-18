@@ -32,7 +32,7 @@ io.sockets.on('connection', function (socket) {
     var bc = 'jtsolarcal'; 
     options = {
       hostname: 'bluegreen',
-      port: 8080,
+      port: 80,
       path: '/testbg'+bc,
       method: 'GET'
     };
