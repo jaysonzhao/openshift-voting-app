@@ -23,7 +23,7 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-io.sockets.on('results', (data) => {
+io.of("/results").on('results', (data) => {
   console.log(data);
   
 });
