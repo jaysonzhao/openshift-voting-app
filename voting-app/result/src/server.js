@@ -26,7 +26,7 @@ io.sockets.on('connection', function (socket) {
     
   });
 
-  sockets.on('results', function (socket) {
+  socket.on('results', function (socket) {
     console.log(socket.data);
     
   });
