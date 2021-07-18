@@ -20,6 +20,8 @@ io.sockets.on('connection', function (socket) {
   socket.emit('message', { text : 'Welcome!' });
 
   socket.on('subscribe', function (data) {
+    console.log(data.channel);
+    socket.emit("room",data.channel);
     socket.join(data.channel);
     
   });
