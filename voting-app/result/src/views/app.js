@@ -56,6 +56,7 @@ function getPercentages(a, b) {
 }
 
 function startCount(){// Set the date we're counting down to
+  socket.emit("countdown", '1');
   var countDownDate = new Date().getTime()+200000;
   
   // Update the count down every 1 second

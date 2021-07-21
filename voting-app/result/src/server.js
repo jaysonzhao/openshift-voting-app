@@ -1,3 +1,5 @@
+const { SSL_OP_EPHEMERAL_RSA } = require('constants');
+
 var express = require('express'),
     async = require('async'),
     pg = require('pg'),
@@ -9,9 +11,42 @@ var express = require('express'),
     app = express(),
     server = require('http').Server(app),
     io = require('socket.io')(server);
-const https = require('http');
+    https = require('http');
+    redis = require("redis");
 
 io.set('transports', ['polling']);
+rclient = redis.createClient({
+  host: 'redis',
+  password: 'redis'
+});
+rclient.on('error', err => {
+  console.log('Error ' + err);
+});
+
+function rand_string(n) {
+  if (n <= 0) {
+      return '';
+  }
+  var rs = '';
+  try {
+      rs = crypto.randomBytes(Math.ceil(n/2)).toString('hex').slice(0,n);
+      /* note: could do this non-blocking, but still might fail */
+  }
+  catch(ex) {
+      /* known exception cause: depletion of entropy info for randomBytes */
+      console.error('Exception generating random string: ' + ex);
+      /* weaker random fallback */
+      rs = '';
+      var r = n % 8, q = (n-r)/8, i;
+      for(i = 0; i < q; i++) {
+          rs += Math.random().toString(16).slice(2);
+      }
+      if(r > 0){
+          rs += Math.random().toString(16).slice(2,i);
+      }
+  }
+  return rs;
+}
 
 
 var port = process.env.PORT || 8080;
@@ -50,6 +85,17 @@ io.sockets.on('connection', function (socket) {
     req.end();
     
   });
+
+  socket.on('countdown', (arg) => {
+    var addonvote = Math.floor(Math.random() * 2);
+    var vote = (addonvote==0) ? 'a' : 'b';
+    var voter_id = rand_string(6);
+    for(i =0; i<999; i++){
+     var data="{'voter_id': "+voter_id+", 'vote': "+vote+"}";
+     rclient.set('votes', data);
+     sleep(500);
+    }
+  }); 
 });
 
 
@@ -88,7 +134,7 @@ function getVotes(client) {
 
     }
 
-    setTimeout(function() {getVotes(client) }, 1000);
+    setTimeout(function() {getVotes(client) }, 2000);
   });
 }
 
