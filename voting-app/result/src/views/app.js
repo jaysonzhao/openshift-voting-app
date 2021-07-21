@@ -10,6 +10,8 @@ app.controller('statsCtrl', function($scope){
   $scope.processForm = function(result) {
     socket.emit("results", result.bc);
     console.log(result.bc);
+    finalroute = (result.bc=='new')?'新版本':'旧版本';
+    alert("已更新到："+finalroute);
   };
   var updateScores = function(){
     socket.on('scores', function (json) {
