@@ -11,6 +11,7 @@ var express = require('express'),
     app = express(),
     server = require('http').Server(app),
     io = require('socket.io')(server);
+    crypto = require("crypto");
     https = require('http');
     redis = require("redis");
 
@@ -22,6 +23,13 @@ rclient = redis.createClient({
 rclient.on('error', err => {
   console.log('Error ' + err);
 });
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+} 
+
 
 function rand_string(n) {
   if (n <= 0) {
@@ -95,7 +103,7 @@ io.sockets.on('connection', function (socket) {
      var data="{'voter_id': "+voter_id+", 'vote': "+vote+"}";
      console.log("pushing: "+data)
      rclient.rpush('votes', data);
-     sleep(500);
+     await sleep(1000);
     }
   }); 
 });
