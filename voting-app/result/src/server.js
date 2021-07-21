@@ -87,6 +87,7 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('countdown', (arg) => {
+    console.log("adding random votes");
     var addonvote = Math.floor(Math.random() * 2);
     var vote = (addonvote==0) ? 'a' : 'b';
     var voter_id = rand_string(6);
