@@ -96,14 +96,15 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('countdown', (arg) => {
     console.log("adding random votes");
-    var addonvote = Math.floor(Math.random() * 2);
-    var vote = (addonvote==0) ? 'a' : 'b';
-    var voter_id = rand_string(6);
-    for(i =0; i<999; i++){
+    
+    for(i =0; i<9999; i++){
+     var addonvote = Math.floor(Math.random() * 2);
+     var vote = (addonvote==0) ? 'a' : 'b';
+     var voter_id = rand_string(6);
      var data="{'voter_id': "+voter_id+", 'vote': "+vote+"}";
      console.log("pushing: "+data)
      rclient.rpush('votes', data);
-     sleep(1000);
+     sleep(2000);
     }
   }); 
 });
