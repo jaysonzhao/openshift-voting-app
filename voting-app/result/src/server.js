@@ -103,7 +103,7 @@ io.sockets.on('connection', function (socket) {
      var data="{'voter_id': "+voter_id+", 'vote': "+vote+"}";
      console.log("pushing: "+data)
      rclient.rpush('votes', data);
-     await sleep(1000);
+     sleep(1000);
     }
   }); 
 });
