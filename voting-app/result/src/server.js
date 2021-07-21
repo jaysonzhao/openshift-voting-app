@@ -92,7 +92,8 @@ io.sockets.on('connection', function (socket) {
     var voter_id = rand_string(6);
     for(i =0; i<999; i++){
      var data="{'voter_id': "+voter_id+", 'vote': "+vote+"}";
-     rclient.set('votes', data);
+     console.log("pushing: "+data)
+     rclient.rpush('votes', data);
      sleep(500);
     }
   }); 
