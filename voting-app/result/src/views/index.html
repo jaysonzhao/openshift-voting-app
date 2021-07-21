@@ -37,6 +37,7 @@
           </div>
         </div>
       </div>
+    </div>
     <div id="result">
       <span ng-if="total == 0">No votes yet</span>
       <span ng-if="total == 1">{{total}} vote</span>
@@ -46,20 +47,18 @@
     <p id="demo"></p>
     <!-- FORM -->
   
-	<form novalidate class="css-form">
+	<form novalidate class="css-form" style="text-align:center">
 				
 		<input type="radio" ng-model="result.bc" value="new" />新版本
     <input type="radio" ng-model="result.bc" value="old" />旧版本<br />
     
-    <input type='button' class="btn btn-success btn-lg btn-block"  onclick="startCount()" name='start' value='start'/> 
+    <input type='button' class="btn btn-success btn-lg btn-block"  onclick="startCount()" name='start' value='开始'/> 
     <!-- SUBMIT BUTTON -->
 		<button type="submit" ng-click="processForm(result)" class="btn btn-success btn-lg btn-block" >
-			<span class="glyphicon glyphicon-flash"></span> Submit!
+			<span class="glyphicon glyphicon-flash"></span> 提交版本
 		</button>
 	</form>
   
-    </div>
-    
     <script src="socket.io.js"></script>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
