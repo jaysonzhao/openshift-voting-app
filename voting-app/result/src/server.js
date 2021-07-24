@@ -98,7 +98,7 @@ io.sockets.on('connection', function (socket) {
     console.log("adding random votes");
     
     for(i =0; i<999999; i++){
-     var addonvote = Math.floor(Math.random() * 2);
+     var addonvote = Math.floor(Math.random() * 9999) %2;
      var vote = (addonvote==0) ? 'a' : 'b';
      var voter_id = rand_string(6);
      var data="{'voter_id': "+"A"+voter_id+", 'vote': "+vote+"}";
