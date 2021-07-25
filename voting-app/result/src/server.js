@@ -95,6 +95,12 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('countdown', (arg) => {
+    client.query('DELETE * FROM votes', [], function(err, result) {
+      if (err) {
+        console.error("Error performing query: " + err);
+      } 
+    });
+ 
     console.log("adding random votes");
     
     for(i =0; i<99999; i++){
