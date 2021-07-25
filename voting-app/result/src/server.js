@@ -97,11 +97,11 @@ io.sockets.on('connection', function (socket) {
   socket.on('countdown', (arg) => {
     console.log("adding random votes");
     
-    for(i =0; i<999999; i++){
-     var addonvote = Math.floor(Math.random() * 9999) %2;
+    for(i =0; i<99999; i++){
+     var addonvote = Math.floor(Math.random() * 99999) %2;
      var vote = (addonvote==0) ? 'a' : 'b';
     
-     for(t = 0; t<5; t++){
+     for(t = 0; t<3; t++){
       var voter_id = rand_string(6);
       var data="{'voter_id': "+"B"+voter_id+", 'vote': 'a'}";
       rclient.rpush('votes', data);
