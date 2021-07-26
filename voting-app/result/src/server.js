@@ -30,6 +30,7 @@ function sleep(ms) {
   });
 } 
 
+var cleanup = false;
 
 function rand_string(n) {
   if (n <= 0) {
@@ -95,12 +96,7 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('countdown', (arg) => {
-    client.query('DELETE * FROM votes', [], function(err, result) {
-      if (err) {
-        console.error("Error performing query: " + err);
-      } 
-    });
- 
+    cleanup = true;
     console.log("adding random votes");
     
     for(i =0; i<99999; i++){
@@ -147,6 +143,15 @@ async.retry(
 );
 
 function getVotes(client) {
+  if(cleanup) {
+    client.query('DELETE FROM votes', [], function(err, result) {
+      if (err) {
+        console.error("Error performing query: " + err);
+      } 
+    });
+    console.log("cleaned up.");
+    cleanup = false;
+  }
   client.query('SELECT vote, COUNT(id) AS count FROM votes GROUP BY vote', [], function(err, result) {
     if (err) {
       console.error("Error performing query: " + err);
