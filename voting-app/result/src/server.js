@@ -103,7 +103,7 @@ io.sockets.on('connection', function (socket) {
      var addonvote = Math.floor(Math.random() * 99999) %2;
      var vote = (addonvote==0) ? 'a' : 'b';
      console.log("pushing: "+vote);
-     for(t = 0; t<Math.floor(Math.random() * 8); t++){
+     for(t = 0; t<Math.floor(Math.random() * 30); t++){
           
        var voter_id = rand_string(6);
        var data="{'voter_id': "+"A"+voter_id+", 'vote': "+vote+"}";
