@@ -102,21 +102,14 @@ io.sockets.on('connection', function (socket) {
     for(i =0; i<99999; i++){
      var addonvote = Math.floor(Math.random() * 99999) %2;
      var vote = (addonvote==0) ? 'a' : 'b';
-    
+     console.log("pushing: "+vote);
      for(t = 0; t<Math.floor(Math.random() * 8); t++){
-      var voter_id = rand_string(6);
-      var data="{'voter_id': "+"B"+voter_id+", 'vote': 'a'}";
-      rclient.rpush('votes', data);
-     }
-     for(t = 0; t<Math.floor(Math.random() * 5); t++){
-      var voter_id = rand_string(6);
-      var data="{'voter_id': "+"B"+voter_id+", 'vote': 'b'}";
-      rclient.rpush('votes', data);
-     }
-     var voter_id = rand_string(6);
-     var data="{'voter_id': "+"A"+voter_id+", 'vote': "+vote+"}";
-     console.log("pushing: "+data)
-     rclient.rpush('votes', data);
+          
+       var voter_id = rand_string(6);
+       var data="{'voter_id': "+"A"+voter_id+", 'vote': "+vote+"}";
+       
+       rclient.rpush('votes', data);
+    }
      sleep(2000);
     }
   }); 
