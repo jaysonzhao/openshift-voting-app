@@ -97,25 +97,28 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('countdown', (arg) => {
     cleanup = true;
-    console.log("adding random votes");
     
-    for(i =0; i<99999; i++){
-     var addonvote = Math.floor(Math.random() * 99999) %2;
-     var vote = (addonvote==0) ? 'a' : 'b';
-     console.log("pushing: "+vote);
-     for(t = 0; t<Math.floor(Math.random() * 30); t++){
-          
-       var voter_id = rand_string(6);
-       var data="{'voter_id': "+"A"+voter_id+", 'vote': "+vote+"}";
-       
-       rclient.rpush('votes', data);
-    }
-     sleep(2000);
-    }
   }); 
 });
 
+function genrandom(){
+  console.log("adding random votes");
+    
+  for(i =0; i<99; i++){
+   var addonvote = Math.floor(Math.random() * 99999) %2;
+   var vote = (addonvote==0) ? 'a' : 'b';
+   console.log("pushing: "+vote);
+   for(t = 0; t<Math.floor(Math.random() * 30); t++){
+        
+     var voter_id = rand_string(6);
+     var data="{'voter_id': "+"A"+voter_id+", 'vote': "+vote+"}";
+     
+     rclient.rpush('votes', data);
+  }
+   sleep(2000);
+  }
 
+}
 
 var pool = new pg.Pool({
   connectionString: 'postgres://postgres:postgres@db/postgres'
@@ -150,6 +153,7 @@ function getVotes(client) {
     console.log("cleaned up.");
     cleanup = false;
   }
+  genrandom();
   client.query('SELECT vote, COUNT(id) AS count FROM votes GROUP BY vote', [], function(err, result) {
     if (err) {
       console.error("Error performing query: " + err);
