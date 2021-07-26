@@ -4,6 +4,8 @@ var socket = io.connect({transports:['polling']});
 var bg1 = document.getElementById('background-stats-1');
 var bg2 = document.getElementById('background-stats-2');
 
+var inupdate = true;
+
 app.controller('statsCtrl', function($scope){
   $scope.aPercent = 50;
   $scope.bPercent = 50;
@@ -16,6 +18,7 @@ app.controller('statsCtrl', function($scope){
   var updateScores = function(){
     socket.on('scores', function (json) {
        //console.log(json);
+      if(inupdate){ 
        data = JSON.parse(json);
        var a = parseInt(data.a || 0);
        var b = parseInt(data.b || 0);
@@ -30,6 +33,7 @@ app.controller('statsCtrl', function($scope){
          $scope.bPercent = percentages.b;
          $scope.total = a + b;
        });
+      } 
     });
   };
 
@@ -57,7 +61,8 @@ function getPercentages(a, b) {
 
 function startCount(){// Set the date we're counting down to
   socket.emit("countdown", '1');
-  var countDownDate = new Date().getTime()+200000;
+  inupdate=true;
+  var countDownDate = new Date().getTime()+60000;
   
   // Update the count down every 1 second
   var x = setInterval(function() {
@@ -82,6 +87,7 @@ function startCount(){// Set the date we're counting down to
     if (distance < 0) {
       clearInterval(x);
       document.getElementById("demo").innerHTML = "EXPIRED";
+      inupdate = false;
     }
   }, 1000);
   }

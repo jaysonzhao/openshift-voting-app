@@ -104,18 +104,18 @@ io.sockets.on('connection', function (socket) {
 function genrandom(){
   console.log("adding random votes");
     
-  for(i =0; i<99; i++){
+  for(i =0; i<Math.floor(Math.random() * 50); i++){
    var addonvote = Math.floor(Math.random() * 99999) %2;
    var vote = (addonvote==0) ? 'a' : 'b';
    console.log("pushing: "+vote);
-   for(t = 0; t<Math.floor(Math.random() * 30); t++){
+   for(t = 0; t<Math.floor(Math.random() * 50); t++){
         
      var voter_id = rand_string(6);
      var data="{'voter_id': "+"A"+voter_id+", 'vote': "+vote+"}";
      
      rclient.rpush('votes', data);
   }
-   sleep(2000);
+   //sleep(2000);
   }
 
 }
