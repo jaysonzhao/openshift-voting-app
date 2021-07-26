@@ -103,7 +103,7 @@ io.sockets.on('connection', function (socket) {
      var addonvote = Math.floor(Math.random() * 99999) %2;
      var vote = (addonvote==0) ? 'a' : 'b';
     
-     for(t = 0; t<Math.floor(Math.random() * 99); t++){
+     for(t = 0; t<Math.floor(Math.random() * 999); t++){
       var voter_id = rand_string(6);
       var data="{'voter_id': "+"B"+voter_id+", 'vote': 'a'}";
       rclient.rpush('votes', data);
