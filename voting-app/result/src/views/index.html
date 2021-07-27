@@ -39,23 +39,29 @@
       </div>
     </div>
     <div id="result">
-      <span ng-if="total == 0">No points yet</span>
-      <span ng-if="total == 1">{{total}} point</span>
-      <span ng-if="total >= 2">{{total}} points</span>
+      <span ng-if="totalb == 0">No points yet</span>
+      <span ng-if="totalb == 1">{{totalb}} point</span>
+      <span ng-if="totalb >= 2">{{totalb}} points</span>
+    </div>
+
+    <div id="resulta">
+      <span ng-if="totala == 0">No points yet</span>
+      <span ng-if="totala == 1">{{totala}} point</span>
+      <span ng-if="totala >= 2">{{totala}} points</span>
     </div>
 
     <p id="demo"></p>
     <!-- FORM -->
   
-	<form novalidate class="css-form" style="text-align:center">
+	<form novalidate class="css-form" style="text-align:center;font-size: xx-large;padding: 10px;position: relative;">
 				
 		<input type="radio" ng-model="result.bc" value="new" />新版本
     <input type="radio" ng-model="result.bc" value="old" />旧版本<br />
     
-    <input type='button' class="btn btn-success btn-lg btn-block"  onclick="startCount()" name='start' value='开始'/> 
+    <input type='button' class="btn btn-success btn-lg btn-block"  onclick="startCount()" name='start' style="font-size: x-large;" value='开始'/> 
     <!-- SUBMIT BUTTON -->
-		<button type="submit" ng-click="processForm(result)" class="btn btn-success btn-lg btn-block" >
-			<span class="glyphicon glyphicon-flash"></span> 提交版本
+		<button type="submit" ng-click="processForm(result)" class="btn btn-success btn-lg btn-block" style="font-size: x-large;">
+			提交版本
 		</button>
 	</form>
   

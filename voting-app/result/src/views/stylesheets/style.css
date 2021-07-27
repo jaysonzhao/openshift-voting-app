@@ -49,8 +49,17 @@ body{
 #result{
   z-index: 3;
   position: absolute;
-  bottom: 40px;
+  bottom: 600px;
   right: 20px;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 45px;
+  font-weight: 600;
+}
+#resulta{
+  z-index: 3;
+  position: absolute;
+  bottom: 600px;
   color: #fff;
   opacity: 0.5;
   font-size: 45px;
